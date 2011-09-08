@@ -1,5 +1,7 @@
 A floating bar chart plugin for raphael.js developed for one of our clients.
 
+View test.html to see it in action.
+
 Usage:
 
 r.g.floatingBarChart(x, y, width, height, [
