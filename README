@@ -1,0 +1,38 @@
+A floating bar chart plugin for raphael.js developed for one of our clients.
+
+Usage:
+
+r.g.floatingBarChart(x, y, width, height, [
+                {startPoint: -10, tallness: 15, gradientString: "135-#123-#321", name: "foo"}, 
+                {startPoint: 10, tallness: 12, gradientString: "135-#456-#654", name: "bar"}, 
+                {startPoint: 15, tallness: 6, gradientString: "135-#789-#987", name: "biz"}, 
+                {startPoint: 14, tallness: 10, gradientString: "135-#fff-#000", name: "baz"}, 
+                {startPoint: 16, tallness: 4, gradientString: "135-#169-#947", name: "fox"}
+            ], 
+        {
+            backgroundGradient: "90-#eee-#fff", 
+            gridHeight: 30, 
+            axisWidth: 20, 
+            axisFontSize: 10, 
+            chartFontSize: 10,
+            chartFontMargin: 10,
+            barsSideMargin: 20,
+            barWidth: 30,
+            fontFace: "Arial",
+            fontSize: 12,
+            fontLineHeight: 14
+        }
+    );
+
+//          x, y: offset in pixels relative to the current paper instance
+//          width, height: size of the chart. must be expressed as integer value, represents value in pixels.
+//          values: array of bar items. an array item contains an object as: {startPoint: integer, tallness: integer, gradientString: string of gradient}
+//          options: object containing options. Most notably:
+//                  options.backgroundGradient: string representing the gradient to use
+//                  options.gridHeight: integer representing the distance in pixels between two lines or two entries on the axis. Chart height MUST be divisible by this number.
+//                  options.axisWidth: integer representing the width in pixels of the axis
+//                  options.axisFontSize: integer representing the axis font size in pixels
+//                  options.chartFontSize: integer representing the font size used under the charts in pixels
+//                  options.chartFontMargin: integer representing margin of the font relative to the bottom of a bar and to the bottom of itself [basically margin-top, margin-bottom]
+//                  options.barsSideMargin: integer representing margin in pixels of the LEFT and RIGHT sides of the bar GROUP. think of all bars contained in a div, and apply a margin to that.
+//                  options.barWidth: integer representing the width of a bar in pixels

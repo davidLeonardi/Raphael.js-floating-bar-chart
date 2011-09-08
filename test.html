@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+    <head>
+        <title>gRaphaël Dynamic Bar Chart</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="author" content="David Leonardi by Mediavitamin">
+        <meta name="description" content="Showcase for floating bar chart, by mediavitamin.com">
+        <link rel="stylesheet" href="demo.css" type="text/css" media="screen" charset="utf-8">
+        <script src="raphael.js" type="text/javascript" charset="utf-8"></script>
+        <script src="g.raphael.js" type="text/javascript" charset="utf-8"></script>
+        <script src="g.bar.js" type="text/javascript" charset="utf-8"></script>
+        <script src="g.floatingBarChart.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript" charset="utf-8">
+            window.onload = function () {
+                var r = Raphael("holder"),
+                    fin = function () {
+                        console.log(this);
+                        this.flag = r.g.popup(this.bar.x, this.bar.y, this.bar.value || "0").insertBefore(this);
+                    },
+                    fout = function () {
+                        this.flag.animate({opacity: 0}, 300, function () {this.remove();});
+                    },
+                    fin2 = function () {
+                        var y = [], res = [];
+                        for (var i = this.bars.length; i--;) {
+                            y.push(this.bars[i].y);
+                            res.push(this.bars[i].value || "0");
+                        }
+                        this.flag = r.g.popup(this.bars[0].x, Math.min.apply(Math, y), res.join(", ")).insertBefore(this);
+                    },
+                    fout2 = function () {
+                        this.flag.animate({opacity: 0}, 300, function () {this.remove();});
+                    };
+                r.g.txtattr.font = "12px 'Fontin Sans', Fontin-Sans, sans-serif";
+                
+                r.g.text(160, 10, "Single Series Chart");
+                r.g.text(480, 10, "Multiline Series Stacked Chart");
+                r.g.text(160, 250, "Multiple Series Chart");
+                r.g.text(480, 240, "Floating bar chart by http://mediavitamin.com");
+                
+                r.g.barchart(10, 10, 300, 220, [[55, 20, 13, 32, 5, 1, 2, 10]]).hover(fin, fout);
+                r.g.hbarchart(330, 10, 300, 220, [[55, 20, 13, 32, 5, 1, 2, 10], [10, 2, 1, 5, 32, 13, 20, 55]], {stacked: true}).hover(fin, fout);
+                r.g.hbarchart(10, 250, 300, 220, [[55, 20, 13, 32, 5, 1, 2, 10], [10, 2, 1, 5, 32, 13, 20, 55]]).hover(fin, fout);
+
+                //BEGIN FLOATING BAR CHART
+
+                r.g.floatingBarChart(330, 250, 300, 220, 
+                        [
+                            {startPoint: -10, tallness: 15, gradientString: "135-#123-#321", name: "foo"}, 
+                            {startPoint: 10, tallness: 12, gradientString: "135-#456-#654", name: "bar"}, 
+                            {startPoint: 15, tallness: 6, gradientString: "135-#789-#987", name: "biz"}, 
+                            {startPoint: 14, tallness: 10, gradientString: "135-#fff-#000", name: "baz"}, 
+                            {startPoint: 16, tallness: 4, gradientString: "135-#169-#947", name: "fox"}
+                        ], 
+                    {
+                        backgroundGradient: "90-#eee-#fff", 
+                        gridHeight: 30, 
+                        axisWidth: 20, 
+                        axisFontSize: 10, 
+                        chartFontSize: 10,
+                        chartFontMargin: 10,
+                        barsSideMargin: 20,
+                        barWidth: 30,
+                        fontFace: "Arial",
+                        fontSize: 12,
+                        fontLineHeight: 14
+                    }
+                );
+                
+                //END FLOATING BAR CHART
+            };
+        </script>
+    </head>
+    <body class="raphael" id="g.raphael.dmitry.baranovskiy.com">
+        <div id="holder"></div>
+        <p>
+            Demo of <a href="http://g.raphaeljs.com/">gRaphaël</a> JavaScript library.
+        </p>
+    </body>
+</html>
