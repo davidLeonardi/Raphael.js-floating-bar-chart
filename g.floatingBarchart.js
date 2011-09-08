@@ -60,7 +60,7 @@ Raphael.fn.g.floatingBarChart = function (x, y, width, height, values, options) 
                 //actually draw the element to the paper
                 paper.text(labelDrawingOffset.x, labelDrawingOffset.y, labelValue + "%").attr({
                     "font-family": options.fontFace,
-                    "font-size": options.fontSize,
+                    "font-size": options.axisFontSize,
                     "height": options.fontLineHeight
                 })
             );
